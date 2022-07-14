@@ -1,10 +1,13 @@
-package Person;
+package Bicycle;
 
 public class Bicycle {
+
     private String codeCycle;
     private String type;
     private String color;
     private boolean available;
+
+
 
     public Bicycle(String codeCycle, String type, String color, boolean available) {
         this.codeCycle = codeCycle;
@@ -44,4 +47,5 @@ public class Bicycle {
     public void setAvailable(boolean available) {
         this.available = available;
     }
+
 }

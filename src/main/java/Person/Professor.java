@@ -1,4 +1,4 @@
-package Bicycle;
+package Person;
 
 
 public class Professor extends Person {
