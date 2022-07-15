@@ -11,7 +11,7 @@ public class Ticket {
 
     //Necesito un contador para generar el número del tiquete y que aumente su número de uno en uno por cada
     // tiquete generado.
-    private int code;
+    private static int code;
     private String bicycle;
     private String user;
     private LocalDate date;
@@ -21,6 +21,10 @@ public class Ticket {
     private boolean condition;
     private String status;
     private double amount;
+
+    public Ticket(){
+        code++;
+    }
 
     public Ticket(int code, String bicycle, String user, LocalDate date, LocalTime starTime, LocalTime endTime, boolean helmet, boolean condition, String status, double amount) {
         this.code = code;
@@ -35,7 +39,7 @@ public class Ticket {
         this.amount = amount;
     }
 
-    public int getCode() {
+    public static int getCode() {
         return code;
     }
 
@@ -119,29 +123,32 @@ public class Ticket {
     @Override
     public String toString() {
         return "A Ticket was generated! \n" +
-                "Code: " + code + "\n" +
+                "Code: T-" + code + "\n" +
                 "Bicycle: " + bicycle + "\n" +
                 "User: " + user + "\n" +
-                "Date:" + date +
+                "Date:" + date + "\n" +
                 "Start time: " + starTime + "\n" +
                 "End time:" + endTime + "\n" +
                 "Helmet: " + helmet + "\n" +
-                "Good condition: " + condition +
+                "Good condition: " + condition + "\n" +
                 "Status: " + status + "\n" +
-                "Amount:" + amount;
+                "Amount:" + amount + "\n";
     }
 
     public static void generateTicket(int code, String bicycle, String user, LocalDate date, LocalTime starTime, LocalTime endTime,boolean helmet, boolean condition, String status, double amount){
-       Ticket ticket = new Ticket( code, bicycle, user, date, starTime, endTime, helmet, condition, status, amount);
-       ticket.setCode(code);
-       ticket.setBicycle(bicycle);
-       ticket.setUser(user);
-       ticket.setDate(date);
-       ticket.setStarTime(starTime);
-       ticket.setEndTime(endTime);
-       ticket.setHelmet(helmet);
-       ticket.setCondition(condition);
-       ticket.setStatus(status);
-       ticket.setAmount(amount);
+        code ++;
+        Ticket ticket = new Ticket( code, bicycle, user, date, starTime, endTime, helmet, condition, status, amount);
+        ticket.setCode(code);
+        ticket.setBicycle(bicycle);
+        ticket.setUser(user);
+        ticket.setDate(date);
+        ticket.setStarTime(starTime);
+        ticket.setEndTime(endTime);
+        ticket.setHelmet(helmet);
+        ticket.setCondition(condition);
+        ticket.setStatus(status);
+        ticket.setAmount(amount);
+
+        System.out.println(ticket.toString());
     }
 }

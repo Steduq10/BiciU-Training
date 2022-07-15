@@ -55,7 +55,8 @@ public class RegisterUser {
         boolean debts = false;
 
         Person student = new Student(DNI, name, surname,age, debts);
-        student.setDNI("S-"+ DNI);
+        String ID = ("S-"+ DNI);
+        student.setDNI(ID);
         student.setName(name);
         student.setSurname(surname);
         student.setAge(age);
@@ -85,7 +86,8 @@ public class RegisterUser {
         int age = sc.nextInt();
         boolean debts = false;
         Person professor = new Professor(DNI, name, surname,age,debts);
-        professor.setDNI("P-" + DNI);
+        String ID = ("P-"+ DNI);
+        professor.setDNI(ID);
         professor.setName(name);
         professor.setSurname(surname);
         professor.setAge(age);

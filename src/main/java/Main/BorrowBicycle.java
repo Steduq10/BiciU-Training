@@ -1,9 +1,12 @@
 package Main;
 
 import Bicycle.Bicycle;
+import Bicycle.Ticket;
 import Person.Person;
 
 import java.io.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -15,6 +18,7 @@ import static Main.RegisterUser.names;
 import static Main.RegisterUser.debt;
 public class BorrowBicycle {
     static Scanner sc = new Scanner(System.in);
+    static String id;
     static List<String> bicyclesData = new ArrayList<>();
     public static List<String> codes = new ArrayList<>();
     static List<String> colors = new ArrayList<>();
@@ -94,7 +98,7 @@ public class BorrowBicycle {
 
         public static void borrowStudent() {
             System.out.println("Please insert your DNI: ");
-            String id = sc.nextLine();
+            id = sc.nextLine();
             String user = "S-"+id;
             if (ids.contains("S-" + id)) {
                 int i = ids.indexOf(ids.contains("S-" + id));
@@ -167,6 +171,16 @@ public class BorrowBicycle {
                                 "Color: " + colors.get(i_Random) + "\n");
 
                         available.set(i_Random, false);
+                        int ticket = Ticket.getCode();
+                        int i = ids.indexOf(ids.contains("S-" + id));
+                        LocalDate date = LocalDate.now();
+                        LocalTime startTime = LocalTime.now();
+                        LocalTime endTime = null;
+                        boolean helmet = true;
+                        boolean condition = true;
+                        String status = "Active";
+                        double amount = 0.0;
+                        Ticket.generateTicket(ticket, codes.get(i_Random), ids.get(i+1), date,startTime, endTime,helmet, condition, status, amount );
                     }
                     break;
                 case "2":
@@ -193,6 +207,17 @@ public class BorrowBicycle {
                                 "Color: " + colors.get(i_Random) + "\n");
 
                         available.set(i_Random, false);
+                        int ticket = Ticket.getCode();
+                        int i = ids.indexOf(ids.contains("S-" + id));
+                        LocalDate date = LocalDate.now();
+                        LocalTime startTime = LocalTime.now();
+                        LocalTime endTime = null;
+                        boolean helmet = true;
+                        boolean condition = true;
+                        String status = "Active";
+                        double amount = 0.0;
+                        Ticket.generateTicket(ticket, codes.get(i_Random), ids.get(i+1), date,startTime, endTime,helmet, condition, status, amount );
+
                     }
                     break;
             }
