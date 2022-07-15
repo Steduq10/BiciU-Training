@@ -26,7 +26,10 @@ public class Main {
                     menu = true;
                     break;
                 case "2":
-                    System.out.println("Here go Borrow Bicycle");
+
+                    BorrowBicycle.fileReader();
+                    BorrowBicycle.borrowBicycle();
+                    menu = true;
                     break;
                 case "3":
                     System.out.println("Here go Return Bicycle");

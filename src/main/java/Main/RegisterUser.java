@@ -12,6 +12,12 @@ import java.util.Scanner;
 public class RegisterUser {
     static Scanner sc = new Scanner(System.in);
     static List<Person> users = new ArrayList<Person>();
+
+    static List<String> ids = new ArrayList<>();
+
+    static List<String> names = new ArrayList<>();
+
+    static List<Boolean> debt = new ArrayList<>();
     public static void registerUser(){
 
 
@@ -28,9 +34,10 @@ public class RegisterUser {
                 break;
             case "2":
                 createProfessor();
+               /*
                 for (Person person : users) {
                     System.out.println(person);
-                }
+                }*/
                 break;
         }
     }
@@ -45,8 +52,9 @@ public class RegisterUser {
         String surname = sc.nextLine();
         System.out.println("Insert your age: ");
         int age = sc.nextInt();
+        boolean debts = false;
 
-        Person student = new Student(DNI, name, surname,age,false);
+        Person student = new Student(DNI, name, surname,age, debts);
         student.setDNI("S-"+ DNI);
         student.setName(name);
         student.setSurname(surname);
@@ -59,6 +67,9 @@ public class RegisterUser {
                 "Age: " + student.getAge()+ "\n");
 
         users.add(student);
+        ids.add("S-"+DNI);
+        names.add(student.getName() + " " + student.getSurname());
+        debt.add(debts);
 
     }
 
@@ -85,6 +96,7 @@ public class RegisterUser {
                 "Age: " + professor.getAge() + "\n");
 
         users.add(professor);
+        ids.add("P-"+DNI);
     }
 
 }

@@ -48,4 +48,13 @@ public class Bicycle {
         this.available = available;
     }
 
+    @Override
+    public String toString() {
+        return "Bicycle{" +
+                "codeCycle='" + codeCycle + '\'' +
+                ", type='" + type + '\'' +
+                ", color='" + color + '\'' +
+                ", available=" + available +
+                "}\n";
+    }
 }
