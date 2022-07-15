@@ -8,4 +8,5 @@ public class Professor extends Person {
         super(DNI, name, surname, age, debts);
     }
 
+
 }

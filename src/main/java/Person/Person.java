@@ -58,12 +58,9 @@ public abstract class Person {
 
     @Override
     public String toString() {
-        return "Person{" +
-                "DNI='" + DNI + '\'' +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", age=" + age +
-                ", debts=" + debts +
-                '}';
+        return "ID: " + DNI +" " +
+                "Name: " + name + " " + surname +" " +
+                "Age: " + age + " " +
+                "debts: " + debts;
     }
 }
