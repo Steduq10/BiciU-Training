@@ -115,19 +115,57 @@ public class BorrowBicycle {
             }
             String option = sc.nextLine();
 
-            switch (option){
+            switch (option) {
                 case "1":
                     int i_Random = randomNumber(0, types.size() - 1);
                     String type = types.get(i_Random);
-                    while(type == "Road"){
-                        if(available.get(i_Random) == true){
-                            System.out.println("Bicycle chosen!\n" +
-                                    "Code: " + codes.get(i_Random) +"\n" +
-                                    "Type: " + types.get(i_Random) +"\n" +
-                                    "Color: " + colors.get(i_Random) +"\n");
-                        }else if(available.get(i_Random) == false){
-                            
-                        }
+
+                    while (type.equals("Mountain")) {
+                        i_Random = randomNumber(0, types.size() - 1);
+                        type = types.get(i_Random);
+                    }
+                    int j = 0;
+                    while (available.get(i_Random) == false && j < available.size()) {
+                        System.out.println("Looking for a Road bicycle. Wait a moment please");
+                        j++;
+                    }
+
+                    if (available.get(i_Random) == false) {
+                        System.out.println("There are no Road bicycles available. Choose another one");
+                        boolean menu = true;
+                    } else if (available.get(i_Random) == true) {
+                        System.out.println("Bicycle chosen!\n" +
+                                "Code: " + codes.get(i_Random) + "\n" +
+                                "Type: " + types.get(i_Random) + "\n" +
+                                "Color: " + colors.get(i_Random) + "\n");
+
+                        available.set(i_Random, false);
+                    }
+                    break;
+                case "2":
+                    i_Random = randomNumber(0, types.size() - 1);
+                    type = types.get(i_Random);
+
+                    while (type.equals("Road")) {
+                        i_Random = randomNumber(0, types.size() - 1);
+                        type = types.get(i_Random);
+                    }
+                    j = 0;
+                    while (available.get(i_Random) == false && j < available.size()) {
+                        System.out.println("Looking for a Road bicycle. Wait a moment please");
+                        j++;
+                    }
+
+                    if (available.get(i_Random) == false) {
+                        System.out.println("There are no Mountain bicycles available. Choose another one");
+                        boolean menu = true;
+                    } else if (available.get(i_Random) == true) {
+                        System.out.println("Bicycle chosen!\n" +
+                                "Code: " + codes.get(i_Random) + "\n" +
+                                "Type: " + types.get(i_Random) + "\n" +
+                                "Color: " + colors.get(i_Random) + "\n");
+
+                        available.set(i_Random, false);
                     }
 
             }
