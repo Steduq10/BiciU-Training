@@ -16,7 +16,7 @@ import static Main.RegisterUser.debt;
 public class BorrowBicycle {
     static Scanner sc = new Scanner(System.in);
     static List<String> bicyclesData = new ArrayList<>();
-    static List<String> codes = new ArrayList<>();
+    public static List<String> codes = new ArrayList<>();
     static List<String> colors = new ArrayList<>();
     static List<String> types = new ArrayList<>();
     static List<Boolean> available = new ArrayList<>();
@@ -71,12 +71,11 @@ public class BorrowBicycle {
             bicycles.add(bicycle);
 
         }
-        //System.out.println(bicycles.toString());
 
         }
 
         public static void borrowBicycle(){
-            System.out.println("What type of use are you?:\n" +
+            System.out.println("What type of user are you?:\n" +
                     "1. Student (S)\n" +
                     "2. Professor (P)\n");
             String type = sc.nextLine();
@@ -93,28 +92,56 @@ public class BorrowBicycle {
             }
         }
 
-        public static void borrowStudent(){
+        public static void borrowStudent() {
             System.out.println("Please insert your DNI: ");
             String id = sc.nextLine();
-
-            if(ids.contains("S-"+id)){
-                int i = ids.indexOf(ids.contains("S-"+id));
-                System.out.println("Welcome: " + names.get(i+1));
-                } else {
+            String user = "S-"+id;
+            if (ids.contains("S-" + id)) {
+                int i = ids.indexOf(ids.contains("S-" + id));
+                System.out.println("Welcome: " + names.get(i + 1));
+            } else {
                 System.out.println("User not found, please register or try again");
                 boolean menu = true;
             }
-            int i = ids.indexOf(ids.contains("S-"+id));
-            if(debt.get(i+1) == true){
-                System.out.println("The user: " + names.get(i+1) + "has a ticket with debt. Please cancel it and try again");
+            int i = ids.indexOf(ids.contains("S-" + id));
+
+            if (debt.get(i + 1) == true) {
+                System.out.println("The user: " + names.get(i + 1) + " has a ticket with debt. Please cancel it and try again\n");
                 boolean menu = true;
-            }else if(debt.get(i+1) == false){
+            } else if (debt.get(i + 1) == false) {
                 System.out.println("Select the bicycle's type:\n" +
                         "1. Road\n" +
                         "2. Mountain\n");
+                selectType();
             }
-            String option = sc.nextLine();
 
+        }
+
+        public static void borrowProfessor(){
+            System.out.println("Please insert your DNI: ");
+            String id = sc.nextLine();
+            String user = "P-"+id;
+            if(ids.contains("P-"+id)){
+                int i = ids.indexOf(ids.contains("P-"+id));
+                System.out.println("Welcome: " + names.get(i+1));
+            } else {
+                System.out.println("User not found, please register or try again");
+                boolean menu = true;
+            }
+            int i = ids.indexOf(ids.contains("P-" + id));
+            if (debt.get(i + 1) == true) {
+                System.out.println("The user: " + names.get(i + 1) + " has a ticket with debt. Please cancel it and try again\n");
+                boolean menu = true;
+            } else if (debt.get(i + 1) == false) {
+                System.out.println("Select the bicycle's type:\n" +
+                        "1. Road\n" +
+                        "2. Mountain\n");
+                selectType();
+            }
+        }
+
+        public static void selectType(){
+            String option = sc.nextLine();
             switch (option) {
                 case "1":
                     int i_Random = randomNumber(0, types.size() - 1);
@@ -167,21 +194,7 @@ public class BorrowBicycle {
 
                         available.set(i_Random, false);
                     }
-
-            }
-
-        }
-
-        public static void borrowProfessor(){
-            System.out.println("Please insert your DNI: ");
-            String id = sc.nextLine();
-
-            if(ids.contains("P-"+id)){
-                int i = ids.indexOf(ids.contains("P-"+id));
-                System.out.println("Welcome: " + names.get(i+1));
-            } else {
-                System.out.println("User not found, please register or try again");
-                boolean menu = true;
+                    break;
             }
         }
 

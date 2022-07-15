@@ -22,7 +22,7 @@ public class RegisterUser {
 
 
 
-        System.out.println("What type of use are you?:\n" +
+        System.out.println("What type of user are you?:\n" +
                 "1. Student (S)\n" +
                 "2. Professor (P)\n");
         String type = sc.nextLine();
@@ -60,6 +60,7 @@ public class RegisterUser {
         student.setSurname(surname);
         student.setAge(age);
 
+
         System.out.println("¡Register completed!\n" +
                 " \n" +
                 "ID: " + student.getDNI() +"\n" +
@@ -82,8 +83,8 @@ public class RegisterUser {
         String surname = sc.nextLine();
         System.out.println("Insert your age: ");
         int age = sc.nextInt();
-
-        Person professor = new Professor(DNI, name, surname,age,false);
+        boolean debts = false;
+        Person professor = new Professor(DNI, name, surname,age,debts);
         professor.setDNI("P-" + DNI);
         professor.setName(name);
         professor.setSurname(surname);
@@ -97,6 +98,8 @@ public class RegisterUser {
 
         users.add(professor);
         ids.add("P-"+DNI);
+        names.add(professor.getName() + " " + professor.getSurname());
+        debt.add(debts);
     }
 
 }
