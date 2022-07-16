@@ -26,6 +26,15 @@ public class Ticket {
 
     public static List<Ticket> ticketList = new ArrayList<>();
     public static List<Integer> codes = new ArrayList<>();
+    public static List<String> bicyclelist = new ArrayList<>();
+    public static List<String> userlist = new ArrayList<>();
+    public static List<LocalDate> dateList = new ArrayList<>();
+    public static List<LocalTime> startTimeList = new ArrayList<>();
+    public static List<LocalTime>  endTimeList = new ArrayList<>();
+    public static List<Boolean> helmetList = new ArrayList<>();
+    public static List<Boolean> conditionList = new ArrayList<>();
+    public static List<String> statusList = new ArrayList<>();
+    public static List<Double> amountList = new ArrayList<>();
 
     public Ticket(int code, String bicycle, String user, LocalDate date, LocalTime starTime, LocalTime endTime, boolean helmet, boolean condition, String status, double amount) {
         this.code = code;
@@ -152,6 +161,15 @@ public class Ticket {
 
         ticketList.add(ticket);
         codes.add(code);
+        bicyclelist.add(bicycle);
+        userlist.add(user);
+        dateList.add(date);
+        startTimeList.add(starTime);
+        endTimeList.add(endTime);
+        helmetList.add(helmet);
+        conditionList.add(condition);
+        statusList.add(status);
+        amountList.add(amount);
         System.out.println(ticket.toString());
     }
 }

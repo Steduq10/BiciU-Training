@@ -2,80 +2,81 @@ package Main;
 
 import Bicycle.Ticket;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Scanner;
 
-import static Main.RegisterUser.ids;
-import static Main.RegisterUser.names;
+import static Bicycle.Ticket.*;
 
 public class ReturnBicycle {
     static Scanner sc = new Scanner(System.in);
     static String id;
     static boolean helmet;
-    static boolean status;
-    static LocalTime endTime; //Seguir ejemplo del ejercicio de sanipet. Ingresar la hora manualmente.
+    static boolean condition;
+    static String status;
+    static LocalTime endTime;
     static double Amount;
+    static int code;
 
-
-    public static void returnBicycle(){
-        System.out.println("What type of user are you?:\n" +
-                "1. Student (S)\n" +
-                "2. Professor (P)\n");
-        String type = sc.nextLine();
-
-        switch (type){
-            case "1":
-                returnStudent();
-
-                break;
-            case "2":
-                returnProfessor();
-
-                break;
-        }
-    }
-
-    public static void returnStudent(){
-        System.out.println("Please insert your DNI: ");
-        id = sc.nextLine();
-        String user = "S-"+id;
-        if   (ids.contains("S-" + id)) {
-            int i = ids.indexOf(ids.contains("S-" + id));
-            System.out.println("Welcome: " + names.get(i + 1));
+    public static void returnBicycle() {
+        System.out.println("What is the number of your ticket?:\n");
+        int code = sc.nextInt();
+        if (codes.contains(code)) {
+            statusBicycle();
         } else {
-            System.out.println("User not found, please register or try again");
+            System.out.println("Ticket not found, please try again");
             boolean menu = true;
         }
+
     }
-
-
-    public static void returnProfessor(){
-        System.out.println("Please insert your DNI: ");
-        String id = sc.nextLine();
-        String user = "P-"+id;
-        if(ids.contains("P-"+id)){
-            int i = ids.indexOf(ids.contains("P-"+id));
-            System.out.println("Welcome: " + names.get(i+1));
-        } else {
-            System.out.println("User not found, please register or try again");
-            boolean menu = true;
-        }
-    }
-
-    public static void statusBicycle(){
-        int code = Ticket.getCode();
-        int i = ids.indexOf(ids.contains("S-" + id)); //corregir para que se ajuste a usuario professor
-        System.out.println("Has helmet? \n" +
-                "1. Yes\n" +
-                "2. No\n");
-        String h = sc.nextLine();
-        switch (h){
-            case "1":
+        public static void statusBicycle() {
+            String ticket = "T-" + code;
+            int i = codes.indexOf(codes.contains(ticket));
+            System.out.println("Has helmet? \n" +
+                    "1. Yes\n" +
+                    "2. No\n");
+            String h = sc.nextLine();
+            if(h.equals("1")){
                 System.out.println("Helmet, ok");
-                break;
-            case "2":
+            } else if (h.equals("2")) {
+                helmet = helmetList.set(i, false);
 
+            }
+
+            System.out.println("Good condition?: \n"+
+                    "1. Yes\n" +
+                    "2. No\n");
+
+            String g = sc.nextLine();
+            switch (g) {
+                case "1":
+                    System.out.println("Bicycle is in good condition");
+                    break;
+                case "2":
+                    condition = conditionList.set(i, false);
+                    break;
+            }
+            System.out.println("Return time?: \n" +
+                    "Hour: ");
+            int hour = sc.nextInt();
+            System.out.println("Minutes: ");
+            int minutes = sc.nextInt();
+            endTime = LocalTime.of(hour,minutes);
+            endTimeList.set(i+1,endTime);  //hacer un método que me permita determinar si se entrego a tiempo o cuanto tiempo tarde
+
+            if(helmet == true && condition == true){ //falta agregar si se entregó a tiempo o no
+                status = statusList.set(i+1,"OK");
+            }else{
+                status = statusList.set(i+1,"Pending");
+            }
+
+            String  bicycle = bicyclelist.get(i+1);
+            String user = userlist.get(i+1);
+            LocalDate date = dateList.get(i+1);
+            LocalTime starTime = startTimeList.get(i+1);
+            double amount = 10.0; // prueba
+            generateTicket(code, bicycle, user, date, starTime, endTime, helmet, condition, status, amount);
         }
 
+
     }
-}

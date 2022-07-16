@@ -33,6 +33,7 @@ public class Main {
                     break;
                 case "3":
                     System.out.println("Here go Return Bicycle");
+                    ReturnBicycle.returnBicycle();
                     break;
                 case "4":
                     System.out.println("Here go pay tickets");
