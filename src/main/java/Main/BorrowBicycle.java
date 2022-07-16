@@ -174,7 +174,13 @@ public class BorrowBicycle {
                         int ticket = Ticket.getCode();
                         int i = ids.indexOf(ids.contains("S-" + id));
                         LocalDate date = LocalDate.now();
-                        LocalTime startTime = LocalTime.now();
+                        //LocalTime startTime = LocalTime.now();
+                        System.out.println("Start time?: \n" +
+                                "Hour: ");
+                        int hour = sc.nextInt();
+                        System.out.println("Minutes: ");
+                        int minutes = sc.nextInt();
+                        LocalTime startTime = LocalTime.of(hour,minutes);
                         LocalTime endTime = null;
                         boolean helmet = true;
                         boolean condition = true;
@@ -210,7 +216,14 @@ public class BorrowBicycle {
                         int ticket = Ticket.getCode();
                         int i = ids.indexOf(ids.contains("S-" + id));
                         LocalDate date = LocalDate.now();
-                        LocalTime startTime = LocalTime.now();
+                        //LocalTime startTime = LocalTime.now();
+                        System.out.println("Start time?: \n" +
+                                "Hour: ");
+                        int hour = sc.nextInt();
+                        System.out.println("Minutes: ");
+                        int minutes = sc.nextInt();
+                        LocalTime startTime = LocalTime.of(hour,minutes);
+
                         LocalTime endTime = null;
                         boolean helmet = true;
                         boolean condition = true;
