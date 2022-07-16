@@ -2,6 +2,8 @@ package Main;
 
 import Bicycle.Bicycle;
 import Bicycle.Ticket;
+import DataAccess.DataAccessImpl;
+import Exceptions.DataAccessEx;
 import Person.Person;
 
 import java.io.*;
@@ -26,7 +28,11 @@ public class BorrowBicycle {
     static List<Boolean> available = new ArrayList<>();
 
     static List<Bicycle> bicycles = new ArrayList<>();
-    public static void fileReader(){
+
+    static DataAccessImpl impl = new DataAccessImpl();
+    public static void fileReader() throws DataAccessEx {
+        impl.createFile("tickets.txt");
+
         File file = new File("bicycles data.txt");
         try {
             BufferedReader obj = new BufferedReader(new FileReader(file));
@@ -186,7 +192,9 @@ public class BorrowBicycle {
                         boolean condition = true;
                         String status = "Active";
                         double amount = 0.0;
+                        System.out.println("A Ticket was generated!");
                         Ticket.generateTicket(ticket, codes.get(i_Random), ids.get(i+1), date,startTime, endTime,helmet, condition, status, amount );
+
                     }
                     break;
                 case "2":
@@ -229,7 +237,9 @@ public class BorrowBicycle {
                         boolean condition = true;
                         String status = "Active";
                         double amount = 0.0;
+                        System.out.println("A Ticket was generated!");
                         Ticket.generateTicket(ticket, codes.get(i_Random), ids.get(i+1), date,startTime, endTime,helmet, condition, status, amount );
+
 
                     }
                     break;

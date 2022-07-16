@@ -1,6 +1,10 @@
 package Bicycle;
 
 
+import DataAccess.DataAccessImpl;
+import Exceptions.DataWritingEx;
+
+import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -36,6 +40,7 @@ public class Ticket {
     public static List<String> statusList = new ArrayList<>();
     public static List<Double> amountList = new ArrayList<>();
 
+    static DataAccessImpl impl = new DataAccessImpl();
     public Ticket(int code, String bicycle, String user, LocalDate date, LocalTime starTime, LocalTime endTime, boolean helmet, boolean condition, String status, double amount) {
         this.code = code;
         this.bicycle = bicycle;
@@ -132,7 +137,7 @@ public class Ticket {
 
     @Override
     public String toString() {
-        return "A Ticket was generated! \n" +
+        return
                 "Code: T-" + code + "\n" +
                 "Bicycle: " + bicycle + "\n" +
                 "User: " + user + "\n" +
@@ -145,7 +150,7 @@ public class Ticket {
                 "Amount:" + amount + "\n";
     }
 
-    public static void generateTicket(int code, String bicycle, String user, LocalDate date, LocalTime starTime, LocalTime endTime,boolean helmet, boolean condition, String status, double amount){
+    public static void generateTicket(int code, String bicycle, String user, LocalDate date, LocalTime starTime, LocalTime endTime,boolean helmet, boolean condition, String status, double amount)  {
         code ++;
         Ticket ticket = new Ticket( code, bicycle, user, date, starTime, endTime, helmet, condition, status, amount);
         ticket.setCode(code);
@@ -159,6 +164,7 @@ public class Ticket {
         ticket.setStatus(status);
         ticket.setAmount(amount);
 
+
         ticketList.add(ticket);
         codes.add(code);
         bicyclelist.add(bicycle);
@@ -171,5 +177,44 @@ public class Ticket {
         statusList.add(status);
         amountList.add(amount);
         System.out.println(ticket.toString());
+        try {
+            impl.writeFile("tickets.txt",ticket,true);
+        } catch (DataWritingEx e) {
+            throw new RuntimeException(e);
+        }
+/*
+        File file = new File("bicycles data.txt");
+        try {
+            BufferedReader obj = new BufferedReader(new FileReader(file));
+            String read;
+            while ((read = obj.readLine()) != null ){
+                //System.out.println(read);
+                bicyclesData.add(read);
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        */
     }
+
+    public static void updateTicket(int code, String bicycle, String user, LocalDate date, LocalTime starTime, LocalTime endTime,boolean helmet, boolean condition, String status, double amount) {
+        code ++;
+        Ticket ticket = new Ticket(code, bicycle, user, date, starTime, endTime, helmet, condition, status, amount);
+        ticket.setCode(code);
+        ticket.setBicycle(bicycle);
+        ticket.setUser(user);
+        ticket.setDate(date);
+        ticket.setStarTime(starTime);
+        ticket.setEndTime(endTime);
+        ticket.setHelmet(helmet);
+        ticket.setCondition(condition);
+        ticket.setStatus(status);
+        ticket.setAmount(amount);
+        System.out.println(ticket.toString());
+    }
+
+
+
 }

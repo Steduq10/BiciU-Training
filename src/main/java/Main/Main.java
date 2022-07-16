@@ -1,5 +1,6 @@
 package Main;
 
+import Exceptions.DataAccessEx;
 import Main.RegisterUser;
 import java.util.Scanner;
 
@@ -27,7 +28,11 @@ public class Main {
                     break;
                 case "2":
 
-                    BorrowBicycle.fileReader();
+                    try {
+                        BorrowBicycle.fileReader();
+                    } catch (DataAccessEx e) {
+                        throw new RuntimeException(e);
+                    }
                     BorrowBicycle.borrowBicycle();
                     menu = true;
                     break;
@@ -37,6 +42,8 @@ public class Main {
                     break;
                 case "4":
                     System.out.println("Here go pay tickets");
+                    PayTicket.payTicket();
+
                     break;
                 case "5":
                     System.out.println("Tickets history");

@@ -1,5 +1,6 @@
 package DataAccess;
 
+import Bicycle.Ticket;
 import Exceptions.DataAccessEx;
 import Exceptions.DataWritingEx;
 import Person.Person;
@@ -29,11 +30,11 @@ public class DataAccessImpl implements IDataAccess{
     }
 
     @Override
-    public void writeFile(String fileName, Person student, boolean attach) throws DataWritingEx {
+    public void writeFile(String fileName, Ticket ticket, boolean attach) throws DataWritingEx {
         var file = new File(fileName);
         try {
             var out = new PrintWriter(new FileWriter(file, attach));
-            out.println(student.toString());
+            out.println(ticket.toString());
             out.close();
         } catch (IOException e) {
             e.printStackTrace();
