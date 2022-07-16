@@ -21,7 +21,12 @@ public class TicketsHistory {
     static DataAccessImpl impl = new DataAccessImpl();
     static List<TicketsHistory> ticketFileList = new ArrayList<>();
     static List<String> header = new ArrayList<>();
-
+    static List<Integer> numberTicketList = new ArrayList<>();
+    static List<String> userIDList = new ArrayList<>();
+    static List<String> fullnameList = new ArrayList<>();
+    static List<Double> amountTicketList = new ArrayList<>();
+    static List<String> statusTicketList = new ArrayList<>();
+    static int i;
 
     public TicketsHistory(int code, String user, String fullName, double amount, String status) {
         this.code = code;
@@ -105,17 +110,19 @@ public class TicketsHistory {
         header.add("Name");
         header.add("Amount($)");
         header.add("Status");
-
+/*
         try {
             impl.writeFile2("tickets.txt", header, true );
         } catch (DataWritingEx e) {
             throw new RuntimeException(e);
         }
+        */
+
     }
 
 
     public static void saveTicket(int code, String user, String fullname, double amount, String status){
-        code ++;
+        //code ++;
         TicketsHistory ticketFile = new TicketsHistory(code,user,fullname,amount,status);
         ticketFile.setCode(code);
         ticketFile.setUser(user);
@@ -125,9 +132,18 @@ public class TicketsHistory {
 
         ticketFileList.add(ticketFile);
 
+        numberTicketList.add(code);
+        userIDList.add(user);
+        fullnameList.add(fullname);
+        amountTicketList.add(amount);
+        statusTicketList.add(status);
+
         try {
+            impl.remove("tickets.txt");
             impl.writeFile("tickets.txt", ticketFileList, true);
         } catch (DataWritingEx e) {
+            throw new RuntimeException(e);
+        } catch (DataAccessEx e) {
             throw new RuntimeException(e);
         }
        /*
@@ -141,9 +157,35 @@ public class TicketsHistory {
 
     }
 
+    public static void updateHistory(int i, int code, String user, String fullname, double amount, String status){
+        code ++;
+        TicketsHistory ticketFile = new TicketsHistory(code,user,fullname,amount,status);
+        ticketFile.setCode(code);
+        ticketFile.setUser(user);
+        ticketFile.setFullName(fullname);
+        ticketFile.setAmount(amount);
+        ticketFile.setStatus(status);
+
+        ticketFileList.add(ticketFile);
+        numberTicketList.add(code);
+        userIDList.add(user);
+        fullnameList.add(fullname);
+        amountTicketList.add(amount);
+        statusTicketList.add(status);
+
+        try {
+            impl.remove("tickets.txt");
+            impl.writeFile("tickets.txt", ticketFileList, true);
+        } catch (DataWritingEx e) {
+            throw new RuntimeException(e);
+        } catch (DataAccessEx e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Override
     public String toString() {
         return
-               "T-"+ code +"   "+ user +"   "+ fullName +"   "+ amount +"   "+ status ;
+               "\n" +"T-"+ code +"   "+ user +"   "+ fullName +"   "+ amount +"   "+ status ;
     }
 }

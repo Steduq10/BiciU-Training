@@ -1,2 +1,3 @@
-[Code, UserID, Name, Amount($), Status]
-[1   S-123   steven duque   0.0   Active]
+[
+T-0   S-123   steven duque   0.0   Active, 
+T-1   S-123   steven duque   11.0   Pending]

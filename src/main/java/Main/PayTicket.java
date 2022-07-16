@@ -6,7 +6,7 @@ import java.time.LocalTime;
 import java.util.Scanner;
 
 import static Bicycle.Ticket.*;
-
+import static Main.TicketsHistory.*;
 public class PayTicket {
     static Scanner sc = new Scanner(System.in);
     static int code;
@@ -20,6 +20,10 @@ public class PayTicket {
 
             if (codes.contains(code)) {
                 loadTicket();
+                String user =userIDList.get(i+1);
+                String fullname = fullnameList.get(i+1);
+
+                TicketsHistory.updateHistory(i,code,user,fullname,amount,status);
             } else {
                 System.out.println("Ticket not found, please try again");
                 boolean menu = true;

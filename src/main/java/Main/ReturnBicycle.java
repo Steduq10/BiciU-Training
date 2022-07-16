@@ -8,6 +8,7 @@ import java.time.LocalTime;
 import java.util.Scanner;
 
 import static Bicycle.Ticket.*;
+import static Main.TicketsHistory.*;
 
 public class ReturnBicycle {
     static Scanner sc = new Scanner(System.in);
@@ -81,13 +82,15 @@ public class ReturnBicycle {
             status = statusList.set(i + 1, "Pending");
             status = "Pending";
         }
-
+        String fullname = fullnameList.get(i+1);
         String bicycle = bicyclelist.get(i + 1);
         String user = userlist.get(i + 1);
         LocalDate date = dateList.get(i + 1);
         LocalTime starTime = startTimeList.get(i + 1);
         amount = 0;
         calculationDebts();
+        TicketsHistory.updateHistory(i,code,user,fullname,amount,status);
+
         //generateTicket(code, bicycle, user, date, starTime, endTime, helmet, condition, status, amount);
         System.out.println("Ticket updated!");
         updateTicket(code, bicycle, user, date, starTime, endTime, helmet, condition, status, amount);

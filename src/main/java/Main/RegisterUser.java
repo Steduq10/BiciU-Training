@@ -24,7 +24,7 @@ public class RegisterUser {
 
         System.out.println("What type of user are you?:\n" +
                 "1. Student (S)\n" +
-                "2. Professor (P)\n");
+                "2. Professor (P)");
         String type = sc.nextLine();
 
         switch (type){

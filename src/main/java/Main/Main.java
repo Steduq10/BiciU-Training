@@ -19,14 +19,14 @@ public class Main {
                     "5. Tickets history\n" +
                     "6. Exit");
             Scanner sc = new Scanner(System.in);
-            String option = sc.nextLine();
+            int option = sc.nextInt();
 
             switch (option) {
-                case "1":
+                case 1:
                     RegisterUser.registerUser();
                     menu = true;
                     break;
-                case "2":
+                case 2:
 
                     try {
                         BorrowBicycle.fileReader();
@@ -36,18 +36,18 @@ public class Main {
                     BorrowBicycle.borrowBicycle();
                     menu = true;
                     break;
-                case "3":
+                case 3:
                     System.out.println("Here go Return Bicycle");
                     ReturnBicycle.returnBicycle();
                     break;
-                case "4":
+                case 4:
                     System.out.println("Here go pay tickets");
                     PayTicket.payTicket();
 
                     break;
-                case "5":
+                case 5:
                     System.out.println("Tickets history");
-                case "6":
+                case 6:
                     System.out.println("Goodbye. See you soon!");
                     menu = false;
                     break;
