@@ -3,9 +3,11 @@ package Bicycle;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
+import java.util.ArrayList;
 
-import static Main.BorrowBicycle.codes;
+import java.util.List;
+
+
 
 public class Ticket {
 
@@ -22,9 +24,8 @@ public class Ticket {
     private String status;
     private double amount;
 
-    public Ticket(){
-        code++;
-    }
+    public static List<Ticket> ticketList = new ArrayList<>();
+    public static List<Integer> codes = new ArrayList<>();
 
     public Ticket(int code, String bicycle, String user, LocalDate date, LocalTime starTime, LocalTime endTime, boolean helmet, boolean condition, String status, double amount) {
         this.code = code;
@@ -149,6 +150,8 @@ public class Ticket {
         ticket.setStatus(status);
         ticket.setAmount(amount);
 
+        ticketList.add(ticket);
+        codes.add(code);
         System.out.println(ticket.toString());
     }
 }

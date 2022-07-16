@@ -100,7 +100,7 @@ public class BorrowBicycle {
             System.out.println("Please insert your DNI: ");
             id = sc.nextLine();
             String user = "S-"+id;
-            if (ids.contains("S-" + id)) {
+            if   (ids.contains("S-" + id)) {
                 int i = ids.indexOf(ids.contains("S-" + id));
                 System.out.println("Welcome: " + names.get(i + 1));
             } else {
