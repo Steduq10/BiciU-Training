@@ -16,7 +16,7 @@ public class ReturnBicycle {
     static boolean condition;
     static String status;
     static LocalTime endTime;
-    static double Amount;
+    static double amount;
     static int code;
     static int i;
 
@@ -86,14 +86,36 @@ public class ReturnBicycle {
             String user = userlist.get(i+1);
             LocalDate date = dateList.get(i+1);
             LocalTime starTime = startTimeList.get(i+1);
-            double amount = 10.0; // prueba
+            amount = 0;
             calculationDebts();
             generateTicket(code, bicycle, user, date, starTime, endTime, helmet, condition, status, amount);
         }
 
         public static void calculationDebts(){
             Duration duration = Duration.between(startTimeList.get(i+1),endTimeList.get(i+1));
-            System.out.println("Time elapsed: " + duration.toMinutes() + "minutes");
+            //System.out.println("Time elapsed: " + duration.toMinutes() + "minutes");
+
+            if(duration.toMinutes() > 30){
+                System.out.println("Bicycle was returned: " + duration.toMinutes() + " minutes late.");
+                double timesLate = Math.floor(duration.toMinutes()/30);
+                double paidLate = timesLate * 3;
+                System.out.println("Must to pay " + paidLate + " usd.");
+                amount += paidLate;
+            }
+
+            if(helmet == false){
+                double paidHelmet = 5.0;
+                System.out.println("The bicycle was returned with no helmet, must to pay " + paidHelmet + " usd.");
+                amount += paidHelmet;
+            }
+
+            if(condition == false){
+                double paidDamaged = 5.0;
+                System.out.println("The bicycle was returned damaged, must to pay " + paidDamaged + " usd.");
+                amount += paidDamaged;
+            }
+
+            System.out.println("Total amount to pay: " + amount + " usd.");
         }
 
     }
