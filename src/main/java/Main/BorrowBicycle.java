@@ -31,7 +31,8 @@ public class BorrowBicycle {
 
     static DataAccessImpl impl = new DataAccessImpl();
     public static void fileReader() throws DataAccessEx {
-        impl.createFile("tickets.txt");
+       // impl.createFile("tickets.txt");
+        TicketsHistory.createHistory();
 
         File file = new File("bicycles data.txt");
         try {
@@ -194,6 +195,7 @@ public class BorrowBicycle {
                         double amount = 0.0;
                         System.out.println("A Ticket was generated!");
                         Ticket.generateTicket(ticket, codes.get(i_Random), ids.get(i+1), date,startTime, endTime,helmet, condition, status, amount );
+                        TicketsHistory.saveTicket(ticket,ids.get(i+1),names.get(i+1),amount,status);
 
                     }
                     break;

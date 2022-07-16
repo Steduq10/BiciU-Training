@@ -3,12 +3,14 @@ package DataAccess;
 import Bicycle.Ticket;
 import Exceptions.DataAccessEx;
 import Exceptions.DataWritingEx;
+import Main.TicketsHistory;
 import Person.Person;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 public class DataAccessImpl implements IDataAccess{
     @Override
@@ -35,6 +37,34 @@ public class DataAccessImpl implements IDataAccess{
         try {
             var out = new PrintWriter(new FileWriter(file, attach));
             out.println(ticket.toString());
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new DataWritingEx("Exception:" + e.getMessage());
+        }
+    }
+
+    @Override
+    public void writeFile(String fileName, List<TicketsHistory> ticketFileList, boolean attach) throws DataWritingEx {
+        var file = new File(fileName);
+        try {
+            var out = new PrintWriter(new FileWriter(file, attach));
+            out.println(ticketFileList.toString());
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new DataWritingEx("Exception:" + e.getMessage());
+        }
+    }
+
+
+
+    @Override
+    public void writeFile2(String fileName, List<String> header, boolean attach) throws DataWritingEx {
+        var file = new File(fileName);
+        try {
+            var out = new PrintWriter(new FileWriter(file, attach));
+            out.println(header.toString());
             out.close();
         } catch (IOException e) {
             e.printStackTrace();

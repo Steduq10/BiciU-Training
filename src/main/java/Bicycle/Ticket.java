@@ -15,8 +15,6 @@ import java.util.List;
 
 public class Ticket {
 
-    //Necesito un contador para generar el número del tiquete y que aumente su número de uno en uno por cada
-    // tiquete generado.
     private static int code;
     private String bicycle;
     private String user;
@@ -27,6 +25,8 @@ public class Ticket {
     private boolean condition;
     private String status;
     private double amount;
+
+    private String fullName;
 
     public static List<Ticket> ticketList = new ArrayList<>();
     public static List<Integer> codes = new ArrayList<>();
@@ -52,6 +52,14 @@ public class Ticket {
         this.condition = condition;
         this.status = status;
         this.amount = amount;
+    }
+
+    public Ticket(int code, String user, String fullName, double amount, String status){
+        this.code = code;
+        this.user = user;
+        this.fullName = fullName;
+        this.amount = amount;
+        this.status = status;
     }
 
     public static int getCode() {
@@ -134,6 +142,13 @@ public class Ticket {
         this.amount = amount;
     }
 
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
 
     @Override
     public String toString() {
@@ -177,26 +192,13 @@ public class Ticket {
         statusList.add(status);
         amountList.add(amount);
         System.out.println(ticket.toString());
-        try {
+        /*try {
             impl.writeFile("tickets.txt",ticket,true);
         } catch (DataWritingEx e) {
             throw new RuntimeException(e);
         }
-/*
-        File file = new File("bicycles data.txt");
-        try {
-            BufferedReader obj = new BufferedReader(new FileReader(file));
-            String read;
-            while ((read = obj.readLine()) != null ){
-                //System.out.println(read);
-                bicyclesData.add(read);
-            }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        */
+
+         */
     }
 
     public static void updateTicket(int code, String bicycle, String user, LocalDate date, LocalTime starTime, LocalTime endTime,boolean helmet, boolean condition, String status, double amount) {
@@ -214,6 +216,8 @@ public class Ticket {
         ticket.setAmount(amount);
         System.out.println(ticket.toString());
     }
+
+
 
 
 

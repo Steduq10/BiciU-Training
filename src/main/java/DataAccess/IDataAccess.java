@@ -13,6 +13,9 @@ public interface IDataAccess {
     boolean exists(String filename) throws DataAccessEx;
     void createFile(String fileName) throws DataAccessEx;
     void writeFile(String fileName, Ticket ticket, boolean anexar) throws DataWritingEx;
+    void writeFile(String fileName, List<TicketsHistory> ticketFileList, boolean attach) throws DataWritingEx;
+    void writeFile2(String fileName, List<String> header, boolean attach) throws DataWritingEx;
+
   //  void writeFile(String nombreArchivo, Stylist stylist, boolean anexar) throws DataWritingEx;
    // void writeFile(String nombreArchivo, Doctor doctor, boolean anexar) throws DataWritingEx;
     //List<Cat> list (String fileName) throws DataReadingEx;
