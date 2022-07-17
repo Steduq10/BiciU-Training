@@ -31,6 +31,7 @@ public class BorrowBicycle {
     static List<Bicycle> bicycles = new ArrayList<>();
 
     static DataAccessImpl impl = new DataAccessImpl();
+    static int number;
     public static void fileReader() throws DataAccessEx {
        // impl.createFile("tickets.txt");
         TicketsHistory.createHistory();
@@ -39,22 +40,7 @@ public class BorrowBicycle {
         } catch (DataReadingEx e) {
             throw new RuntimeException(e);
         }
-/*
-        File file = new File("bicycles data.txt");
-        try {
-            BufferedReader obj = new BufferedReader(new FileReader(file));
-            String read;
-            while ((read = obj.readLine()) != null ){
-                //System.out.println(read);
-                bicyclesData.add(read);
-            }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
 
- */
         for (String bici: bicyclesData) {
             String[] split = bici.split(";");
             for(int i =0; i < split.length; i++) {
@@ -116,18 +102,26 @@ public class BorrowBicycle {
             id = sc.nextLine();
             String user = "S-"+id;
             if   (ids.contains("S-" + id)) {
-                int i = ids.indexOf(ids.contains("S-" + id));
-                System.out.println("Welcome: " + names.get(i + 1));
+               // int i = ids.indexOf(ids.contains("S-" + id));
+                for (int i =0; i < ids.size(); i++) {
+                    String register = ids.get(i);
+                    if (register.equals("S-" + id)) {
+                        number = i;
+                    }
+
+                }
+                System.out.println("Welcome: " + names.get(number));
             } else {
                 System.out.println("User not found, please register or try again");
                 boolean menu = true;
             }
-            int i = ids.indexOf(ids.contains("S-" + id));
+            //int i = ids.indexOf(ids.contains("S-" + id));
 
-            if (debt.get(i + 1) == true) {
-                System.out.println("The user: " + names.get(i + 1) + " has a ticket with debt. Please cancel it and try again\n");
+
+            if (debt.get(number) == true) {
+                System.out.println("The user: " + names.get(number) + " has a ticket with debt. Please cancel it and try again\n");
                 boolean menu = true;
-            } else if (debt.get(i + 1) == false) {
+            } else if (debt.get(number) == false) {
                 System.out.println("Select the bicycle's type:\n" +
                         "1. Road\n" +
                         "2. Mountain\n");
@@ -138,20 +132,30 @@ public class BorrowBicycle {
 
         public static void borrowProfessor(){
             System.out.println("Please insert your DNI: ");
-            String id = sc.nextLine();
+            id = sc.nextLine();
             String user = "P-"+id;
+
+
             if(ids.contains("P-"+id)){
-                int i = ids.indexOf(ids.contains("P-"+id));
-                System.out.println("Welcome: " + names.get(i+1));
+                //int i = ids.indexOf(ids.contains("P-"+id));
+                for (int i =0; i < ids.size(); i++) {
+                    String register = ids.get(i);
+                    if (register.equals("P-" + id)) {
+                        number = i;
+                    }
+                }
+                System.out.println("Welcome: " + names.get(number));
+
             } else {
                 System.out.println("User not found, please register or try again");
                 boolean menu = true;
             }
-            int i = ids.indexOf(ids.contains("P-" + id));
-            if (debt.get(i + 1) == true) {
-                System.out.println("The user: " + names.get(i + 1) + " has a ticket with debt. Please cancel it and try again\n");
+
+
+            if (debt.get(number) == true) {
+                System.out.println("The user: " + names.get(number) + " has a ticket with debt. Please cancel it and try again\n");
                 boolean menu = true;
-            } else if (debt.get(i + 1) == false) {
+            } else if (debt.get(number) == false) {
                 System.out.println("Select the bicycle's type:\n" +
                         "1. Road\n" +
                         "2. Mountain\n");
@@ -187,7 +191,16 @@ public class BorrowBicycle {
 
                         available.set(i_Random, false);
                         int ticket = Ticket.getCode();
-                        int i = ids.indexOf(ids.contains("S-" + id));
+                        //int i = ids.indexOf(ids.contains("S-" + id));
+                        for (int i =0; i < ids.size(); i++) {
+                            String register = ids.get(i);
+                            if (register.equals("S-" + id)) {
+                                number = i;
+                            } else if (register.equals("P-" + id)){
+                                number = i;
+                            }
+                        }
+
                         LocalDate date = LocalDate.now();
                         //LocalTime startTime = LocalTime.now();
                         System.out.println("Start time?: \n" +
@@ -204,8 +217,8 @@ public class BorrowBicycle {
                         String status = "Active";
                         double amount = 0.0;
                         System.out.println("A Ticket was generated!");
-                        Ticket.generateTicket(ticket, codes.get(i_Random), ids.get(i+1), date,startTime, endTime,helmet, condition, status, amount );
-                        TicketsHistory.saveTicket(ticket,ids.get(i+1),names.get(i+1),amount,status);
+                        Ticket.generateTicket(ticket, codes.get(i_Random), ids.get(number), date,startTime, endTime,helmet, condition, status, amount );
+                        TicketsHistory.saveTicket(ticket,ids.get(number),names.get(number),amount,status);
 
                     }
                     break;
@@ -234,7 +247,15 @@ public class BorrowBicycle {
 
                         available.set(i_Random, false);
                         int ticket = Ticket.getCode();
-                        int i = ids.indexOf(ids.contains("S-" + id));
+                        //int i = ids.indexOf(ids.contains("S-" + id));
+                        for (int i =0; i < ids.size(); i++) {
+                            String register = ids.get(i);
+                            if (register.equals("P-" + id)) {
+                                number = i;
+                            } else if (register.equals("S-" + id)) {
+                                number = i;
+                            }
+                        }
                         LocalDate date = LocalDate.now();
                         //LocalTime startTime = LocalTime.now();
                         System.out.println("Start time?: \n" +
@@ -252,8 +273,8 @@ public class BorrowBicycle {
                         String status = "Active";
                         double amount = 0.0;
                         System.out.println("A Ticket was generated!");
-                        Ticket.generateTicket(ticket, codes.get(i_Random), ids.get(i+1), date,startTime, endTime,helmet, condition, status, amount );
-                        TicketsHistory.saveTicket(ticket,ids.get(i+1),names.get(i+1),amount,status);
+                        Ticket.generateTicket(ticket, codes.get(i_Random), ids.get(number), date,startTime, endTime,helmet, condition, status, amount );
+                        TicketsHistory.saveTicket(ticket,ids.get(number),names.get(number),amount,status);
 
                     }
                     break;

@@ -78,9 +78,11 @@ public class RegisterUser {
                 "Age: " + student.getAge()+ "\n");
 
         users.add(student);
-        ids.add("S-"+DNI);
+        ids.add(ID);
         names.add(student.getName() + " " + student.getSurname());
         debt.add(debts);
+
+
 
     }
 
@@ -108,9 +110,10 @@ public class RegisterUser {
                 "Age: " + professor.getAge() + "\n");
 
         users.add(professor);
-        ids.add("P-"+DNI);
+        ids.add(ID);
         names.add(professor.getName() + " " + professor.getSurname());
         debt.add(debts);
+
     }
 
 }

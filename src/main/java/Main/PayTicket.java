@@ -25,7 +25,7 @@ public class PayTicket {
                 loadTicket();
                 String user =userIDList.get(i+1);
                 String fullname = fullnameList.get(i+1);
-
+                code = code-1;
                 TicketsHistory.saveTicket(code,user,fullname,amount,status);
             } else {
                 System.out.println("Ticket not found, please try again");
@@ -49,7 +49,6 @@ public class PayTicket {
             //generateTicket(code, bicycle, user, date, starTime, endTime, helmet, condition, status, amount);
             updateTicket(code, bicycle, user, date, starTime, endTime, helmet, condition, status, amount);
 
-            //Ticket ticket2 = new Ticket( code, bicycle, user, date, starTime, endTime, helmet, condition, status, amount);
 
 
 
@@ -61,6 +60,7 @@ public class PayTicket {
                 status = "OK";
                 //amount = 0;
                 updateTicket(code, bicycle, user, date, starTime, endTime, helmet, condition, status, amount);
+
             } else if (usd > amount) {
                 System.out.println("Thanks for paying. See you soon");
                 double spare = usd - amount;
@@ -68,6 +68,8 @@ public class PayTicket {
                 status = "OK";
                 //amount = 0;
                 updateTicket(code, bicycle, user, date, starTime, endTime, helmet, condition, status, amount);
+
+
             }
             else if(usd<amount){
                 System.out.println("Please, insert the correct amount; You must to pay: " + amount + " usd");
