@@ -196,13 +196,7 @@ public class Ticket {
         statusList.add(status);
         amountList.add(amount);
         System.out.println(ticket.toString());
-        /*try {
-            impl.writeFile("tickets.txt",ticket,true);
-        } catch (DataWritingEx e) {
-            throw new RuntimeException(e);
-        }
 
-         */
     }
 
     public static void updateTicket(int code, String bicycle, String user, LocalDate date, LocalTime starTime, LocalTime endTime,boolean helmet, boolean condition, String status, double amount) {

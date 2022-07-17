@@ -9,6 +9,7 @@ import java.time.LocalTime;
 import java.util.Scanner;
 
 import static Bicycle.Ticket.*;
+import static Main.RegisterUser.ids;
 import static Main.TicketsHistory.*;
 public class PayTicket {
     static Scanner sc = new Scanner(System.in);
@@ -23,8 +24,8 @@ public class PayTicket {
 
             if (codes.contains(code)) {
                 loadTicket();
-                String user =userIDList.get(i+1);
-                String fullname = fullnameList.get(i+1);
+                String user =userIDList.get(i);
+                String fullname = fullnameList.get(i);
                 code = code-1;
                 TicketsHistory.saveTicket(code,user,fullname,amount,status);
             } else {
@@ -34,18 +35,24 @@ public class PayTicket {
         }
 
         public static void loadTicket() {
-            String ticket = "T-" + code;
-            i = codes.indexOf(codes.contains(ticket));
+            //String ticket = "T-" + code;
+            //i = codes.indexOf(codes.contains(ticket));
+            for (int j =0; j < codes.size(); j++) {
+                int register = codes.get(j);
+                if (register == code) {
+                    i= j;
+                }
+            }
 
-            String  bicycle = bicyclelist.get(i+1);
-            String user = userlist.get(i+1);
-            LocalDate date = dateList.get(i+1);
-            LocalTime starTime = startTimeList.get(i+1);
-            LocalTime endTime = endTimeList.get(i+1);
-            boolean helmet = helmetList.get(i+1);
-            boolean condition = conditionList.get(i+1);
-            amount = amountList.get(i+1);
-            status = statusList.get(i+1);
+            String  bicycle = bicyclelist.get(i);
+            String user = userlist.get(i);
+            LocalDate date = dateList.get(i);
+            LocalTime starTime = startTimeList.get(i);
+            LocalTime endTime = endTimeList.get(i);
+            boolean helmet = helmetList.get(i);
+            boolean condition = conditionList.get(i);
+            amount = amountList.get(i);
+            status = statusList.get(i);
             //generateTicket(code, bicycle, user, date, starTime, endTime, helmet, condition, status, amount);
             updateTicket(code, bicycle, user, date, starTime, endTime, helmet, condition, status, amount);
 

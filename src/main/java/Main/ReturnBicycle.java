@@ -37,17 +37,24 @@ public class ReturnBicycle {
     public static void statusBicycle() {
 
         String ticket = "T-" + code;
-        i = codes.indexOf(codes.contains(ticket));
+        //i = codes.indexOf(codes.contains(ticket));
+        for (int j =0; j < codes.size(); j++) {
+            int register = codes.get(j);
+            if (register == code) {
+                i= j;
+            }
+        }
+
         //returnHelmet();
         System.out.println("Has helmet? \n" +
                 "1. Yes\n" +
                 "2. No ");
         String an = sc.nextLine();
         int answer = Integer.parseInt(an);
-        helmet = helmetList.get(i + 1);
+        helmet = helmetList.get(i);
         if (answer == 1) {
             System.out.println("Helmet, ok");
-            helmet = helmetList.get(i + 1);
+            helmet = helmetList.get(i);
         } else if (answer == 2) {
             //helmet = helmetList.set(i+1, false);
             helmet = false;
@@ -62,10 +69,10 @@ public class ReturnBicycle {
 
         String gd = sc.nextLine();
         int good = Integer.parseInt(gd);
-        condition = conditionList.get(i + 1);
+        condition = conditionList.get(i);
         if (good == 1) {
             System.out.println("Bicycle is in good condition");
-            condition = conditionList.get(i + 1);
+            condition = conditionList.get(i);
         } else if (good == 2) {
             // condition = conditionList.set(i+1, false);
             condition = false;
@@ -79,22 +86,14 @@ public class ReturnBicycle {
         String mn = sc.nextLine();
         int minutes = Integer.parseInt(mn);
         endTime = LocalTime.of(hour, minutes);
-        endTimeList.set(i + 1, endTime);
-        status = statusList.get(i + 1);
-       /* if (helmet == true && condition == true) { //falta agregar si se entregó a tiempo o no
-            //status = statusList.set(i+1,"OK");
-            status = "OK";
-        } else {
-            status = statusList.set(i + 1, "Pending");
-            status = "Pending";
-        }
+        endTimeList.set(i, endTime);
+        status = statusList.get(i);
 
-        */
-        String fullname = fullnameList.get(i+1);
-        String bicycle = bicyclelist.get(i + 1);
-        String user = userlist.get(i + 1);
-        LocalDate date = dateList.get(i + 1);
-        LocalTime starTime = startTimeList.get(i + 1);
+        String fullname = fullnameList.get(i);
+        String bicycle = bicyclelist.get(i);
+        String user = userlist.get(i);
+        LocalDate date = dateList.get(i);
+        LocalTime starTime = startTimeList.get(i);
         amount = 0;
         calculationDebts();
         TicketsHistory.saveTicket(code,user,fullname,amount,status);
@@ -102,10 +101,10 @@ public class ReturnBicycle {
         //generateTicket(code, bicycle, user, date, starTime, endTime, helmet, condition, status, amount);
         System.out.println("Ticket updated!");
         updateTicket(code, bicycle, user, date, starTime, endTime, helmet, condition, status, amount);
-        amountList.set(i + 1, amount);
-        helmetList.set(i+1, helmet);
-        conditionList.set(i+1,condition);
-        statusList.set(i+1, status);
+        amountList.set(i , amount);
+        helmetList.set(i, helmet);
+        conditionList.set(i,condition);
+        statusList.set(i, status);
         bicycleAvailable();
         System.out.println("Proceed payment?: \n" +
                 "1. Yes\n" +
@@ -124,7 +123,7 @@ public class ReturnBicycle {
     }
 
     public static void calculationDebts() {
-        Duration duration = Duration.between(startTimeList.get(i + 1), endTimeList.get(i + 1));
+        Duration duration = Duration.between(startTimeList.get(i ), endTimeList.get(i));
         //System.out.println("Time elapsed: " + duration.toMinutes() + "minutes");
 
         if (duration.toMinutes() > 30) {
@@ -158,7 +157,7 @@ public class ReturnBicycle {
     }
 
     public static void bicycleAvailable() {
-        String bicycleCode = bicyclelist.get(i + 1);
+        String bicycleCode = bicyclelist.get(i );
         int position = BorrowBicycle.codes.indexOf(bicycleCode);
         BorrowBicycle.available.set(position , true);
         // System.out.println(bicycleCode + " is in the position " + position + "and now is available status is " + BorrowBicycle.available.get(position + 1));

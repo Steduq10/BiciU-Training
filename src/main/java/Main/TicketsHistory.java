@@ -116,13 +116,7 @@ public class TicketsHistory {
         header.add("Name");
         header.add("Amount($)");
         header.add("Status");
-/*
-        try {
-            impl.writeFile2("tickets.txt", header, true );
-        } catch (DataWritingEx e) {
-            throw new RuntimeException(e);
-        }
-        */
+
 
     }
 
@@ -154,46 +148,7 @@ public class TicketsHistory {
         }
 
 
-
-
-       /*
-        try {
-            impl.writeFile("tickets.txt",ticketFile, true);
-        } catch (DataWritingEx e) {
-            throw new RuntimeException(e);
-        }
-
-        */
-
     }
-/*
-    public static void updateHistory(int i, int code, String user, String fullname, double amount, String status){
-        //code ++;
-        TicketsHistory ticketFile = new TicketsHistory(code,user,fullname,amount,status);
-        ticketFile.setCode(code);
-        ticketFile.setUser(user);
-        ticketFile.setFullName(fullname);
-        ticketFile.setAmount(amount);
-        ticketFile.setStatus(status);
-
-        ticketFileList.add(ticketFile);
-        numberTicketList.add(code);
-        userIDList.add(user);
-        fullnameList.add(fullname);
-        amountTicketList.add(amount);
-        statusTicketList.add(status);
-
-        try {
-            impl.remove("tickets.txt");
-            impl.writeFile("tickets.txt", ticketFileList, true);
-        } catch (DataWritingEx e) {
-            throw new RuntimeException(e);
-        } catch (DataAccessEx e) {
-            throw new RuntimeException(e);
-        }
-    }
-    */
-
     public static void allTickets(){
         File file = new File("tickets.txt");
         try {
