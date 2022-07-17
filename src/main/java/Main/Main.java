@@ -39,6 +39,7 @@ public class Main {
                 case 3:
                     System.out.println("Here go Return Bicycle");
                     ReturnBicycle.returnBicycle();
+
                     break;
                 case 4:
                     System.out.println("Here go pay tickets");
@@ -47,6 +48,9 @@ public class Main {
                     break;
                 case 5:
                     System.out.println("Tickets history");
+                    TicketsHistory.menuHistory();
+                    menu = true;
+                    break;
                 case 6:
                     System.out.println("Goodbye. See you soon!");
                     menu = false;

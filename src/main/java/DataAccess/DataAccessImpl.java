@@ -2,14 +2,11 @@ package DataAccess;
 
 import Bicycle.Ticket;
 import Exceptions.DataAccessEx;
+import Exceptions.DataReadingEx;
 import Exceptions.DataWritingEx;
 import Main.TicketsHistory;
-import Person.Person;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.List;
 
 public class DataAccessImpl implements IDataAccess{
@@ -69,6 +66,23 @@ public class DataAccessImpl implements IDataAccess{
         } catch (IOException e) {
             e.printStackTrace();
             throw new DataWritingEx("Exception:" + e.getMessage());
+        }
+    }
+
+    @Override
+    public void readFile(String fileName, List<String> array) throws DataReadingEx {
+        File file = new File("bicycles data.txt");
+        try {
+            BufferedReader obj = new BufferedReader(new FileReader(file));
+            String read;
+            while ((read = obj.readLine()) != null ){
+                //System.out.println(read);
+                array.add(read);
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

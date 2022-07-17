@@ -44,6 +44,8 @@ public class RegisterUser {
 
     public static void createStudent(){
 
+
+
         System.out.println("Insert your DNI: ");
         String DNI = sc.nextLine();
         System.out.println("Insert your name: ");
@@ -52,6 +54,10 @@ public class RegisterUser {
         String surname = sc.nextLine();
         System.out.println("Insert your age: ");
         int age = sc.nextInt();
+        if (age < 18){
+            System.out.println("You must be 18 years old or older");
+        }
+
         boolean debts = false;
 
         Person student = new Student(DNI, name, surname,age, debts);

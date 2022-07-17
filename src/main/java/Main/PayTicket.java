@@ -1,6 +1,9 @@
 package Main;
 
 
+import Bicycle.Ticket;
+
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Scanner;
@@ -23,7 +26,7 @@ public class PayTicket {
                 String user =userIDList.get(i+1);
                 String fullname = fullnameList.get(i+1);
 
-                TicketsHistory.updateHistory(i,code,user,fullname,amount,status);
+                TicketsHistory.saveTicket(code,user,fullname,amount,status);
             } else {
                 System.out.println("Ticket not found, please try again");
                 boolean menu = true;
@@ -44,7 +47,11 @@ public class PayTicket {
             amount = amountList.get(i+1);
             status = statusList.get(i+1);
             //generateTicket(code, bicycle, user, date, starTime, endTime, helmet, condition, status, amount);
-            updateTicket(code, bicycle, user, date, starTime, endTime, helmet, condition, status, amount);
+            //updateTicket(code, bicycle, user, date, starTime, endTime, helmet, condition, status, amount);
+
+            Ticket ticket2 = new Ticket( code, bicycle, user, date, starTime, endTime, helmet, condition, status, amount);
+
+
 
             System.out.println("Amount to pay: " + amount + " usd.");
             System.out.println("Please, insert the quantity of usd to pay: ");

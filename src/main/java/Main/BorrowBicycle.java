@@ -4,6 +4,7 @@ import Bicycle.Bicycle;
 import Bicycle.Ticket;
 import DataAccess.DataAccessImpl;
 import Exceptions.DataAccessEx;
+import Exceptions.DataReadingEx;
 import Person.Person;
 
 import java.io.*;
@@ -33,7 +34,12 @@ public class BorrowBicycle {
     public static void fileReader() throws DataAccessEx {
        // impl.createFile("tickets.txt");
         TicketsHistory.createHistory();
-
+        try {
+            impl.readFile("bicycles data.txt", bicyclesData);
+        } catch (DataReadingEx e) {
+            throw new RuntimeException(e);
+        }
+/*
         File file = new File("bicycles data.txt");
         try {
             BufferedReader obj = new BufferedReader(new FileReader(file));
@@ -47,6 +53,8 @@ public class BorrowBicycle {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+ */
         for (String bici: bicyclesData) {
             String[] split = bici.split(";");
             for(int i =0; i < split.length; i++) {

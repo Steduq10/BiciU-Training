@@ -3,8 +3,10 @@ package Main;
 import Bicycle.Ticket;
 import DataAccess.DataAccessImpl;
 import Exceptions.DataAccessEx;
+import Exceptions.DataReadingEx;
 import Exceptions.DataWritingEx;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -26,6 +28,8 @@ public class TicketsHistory {
     static List<String> fullnameList = new ArrayList<>();
     static List<Double> amountTicketList = new ArrayList<>();
     static List<String> statusTicketList = new ArrayList<>();
+
+    static List<String> txtReader = new ArrayList<>();
     static int i;
 
     public TicketsHistory(int code, String user, String fullName, double amount, String status) {
@@ -89,17 +93,18 @@ public class TicketsHistory {
                 "3. Search by status");
         int option = sc.nextInt();
 
-        switch (option){
-            case 1:
-                System.out.println("all tickets");
-                break;
-            case 2 :
+        if (option == 1) {
+            System.out.println("all tickets");
+            allTickets();
+        } else if (option == 2) {
                 System.out.println("by code");
-                break;
-            case 3 :
-                System.out.println("by status");
-                break;
+                byCode();
+            }
+        else if (option == 3) {
+            System.out.println("by status");
+            byStatus();
         }
+
     }
 
     public static void createHistory() throws DataAccessEx {
@@ -122,7 +127,7 @@ public class TicketsHistory {
 
 
     public static void saveTicket(int code, String user, String fullname, double amount, String status){
-        //code ++;
+        code ++;
         TicketsHistory ticketFile = new TicketsHistory(code,user,fullname,amount,status);
         ticketFile.setCode(code);
         ticketFile.setUser(user);
@@ -146,6 +151,10 @@ public class TicketsHistory {
         } catch (DataAccessEx e) {
             throw new RuntimeException(e);
         }
+
+
+
+
        /*
         try {
             impl.writeFile("tickets.txt",ticketFile, true);
@@ -156,9 +165,9 @@ public class TicketsHistory {
         */
 
     }
-
+/*
     public static void updateHistory(int i, int code, String user, String fullname, double amount, String status){
-        code ++;
+        //code ++;
         TicketsHistory ticketFile = new TicketsHistory(code,user,fullname,amount,status);
         ticketFile.setCode(code);
         ticketFile.setUser(user);
@@ -182,7 +191,81 @@ public class TicketsHistory {
             throw new RuntimeException(e);
         }
     }
+    */
 
+    public static void allTickets(){
+        File file = new File("tickets.txt");
+        try {
+            BufferedReader obj = new BufferedReader(new FileReader(file));
+            String read;
+            while ((read = obj.readLine()) != null ){
+                //System.out.println(read);
+                txtReader.add(read);
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        for (String tickets : txtReader) {
+            System.out.println(tickets);
+        }
+    }
+
+    public static void byCode(){
+        File file = new File("tickets.txt");
+        try {
+            BufferedReader obj = new BufferedReader(new FileReader(file));
+            String read;
+            while ((read = obj.readLine()) != null ){
+                //System.out.println(read);
+                txtReader.add(read);
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("Insert the ticket's number: ");
+        int code = sc.nextInt();
+        for (String tickets : txtReader) {
+            if(tickets.contains("T-"+code)){
+                System.out.println(tickets);
+            }
+
+        }
+    }
+
+    public static void byStatus(){
+        File file = new File("tickets.txt");
+        try {
+            BufferedReader obj = new BufferedReader(new FileReader(file));
+            String read;
+            while ((read = obj.readLine()) != null ){
+                //System.out.println(read);
+                txtReader.add(read);
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("Insert the status:\n" +
+                "1. Active\n" +
+                "2. Pending\n" +
+                "3. OK ");
+        int st = sc.nextInt();
+        String option = null;
+        if(st == 1){
+             option = "Active";
+        }else if (st == 2) {option = "Pending";}
+        else if (st == 3) { option = "OK";}
+        for (String tickets : txtReader) {
+            if(tickets.contains(option)) {
+                System.out.println(tickets);
+            }
+        }
+    }
     @Override
     public String toString() {
         return

@@ -203,18 +203,18 @@ public class Ticket {
 
     public static void updateTicket(int code, String bicycle, String user, LocalDate date, LocalTime starTime, LocalTime endTime,boolean helmet, boolean condition, String status, double amount) {
         code ++;
-        Ticket ticket = new Ticket(code, bicycle, user, date, starTime, endTime, helmet, condition, status, amount);
-        ticket.setCode(code);
-        ticket.setBicycle(bicycle);
-        ticket.setUser(user);
-        ticket.setDate(date);
-        ticket.setStarTime(starTime);
-        ticket.setEndTime(endTime);
-        ticket.setHelmet(helmet);
-        ticket.setCondition(condition);
-        ticket.setStatus(status);
-        ticket.setAmount(amount);
-        System.out.println(ticket.toString());
+        Ticket ticket2 = new Ticket(code, bicycle, user, date, starTime, endTime, helmet, condition, status, amount);
+        ticket2.setCode(code);
+        ticket2.setBicycle(bicycle);
+        ticket2.setUser(user);
+        ticket2.setDate(date);
+        ticket2.setStarTime(starTime);
+        ticket2.setEndTime(endTime);
+        ticket2.setHelmet(helmet);
+        ticket2.setCondition(condition);
+        ticket2.setStatus(status);
+        ticket2.setAmount(amount);
+        System.out.println(ticket2.toString());
     }
 
 
