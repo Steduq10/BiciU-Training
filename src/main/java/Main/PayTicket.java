@@ -47,9 +47,9 @@ public class PayTicket {
             amount = amountList.get(i+1);
             status = statusList.get(i+1);
             //generateTicket(code, bicycle, user, date, starTime, endTime, helmet, condition, status, amount);
-            //updateTicket(code, bicycle, user, date, starTime, endTime, helmet, condition, status, amount);
+            updateTicket(code, bicycle, user, date, starTime, endTime, helmet, condition, status, amount);
 
-            Ticket ticket2 = new Ticket( code, bicycle, user, date, starTime, endTime, helmet, condition, status, amount);
+            //Ticket ticket2 = new Ticket( code, bicycle, user, date, starTime, endTime, helmet, condition, status, amount);
 
 
 

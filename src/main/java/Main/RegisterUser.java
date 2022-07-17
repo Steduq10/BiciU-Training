@@ -45,7 +45,6 @@ public class RegisterUser {
     public static void createStudent(){
 
 
-
         System.out.println("Insert your DNI: ");
         String DNI = sc.nextLine();
         System.out.println("Insert your name: ");
@@ -53,10 +52,14 @@ public class RegisterUser {
         System.out.println("Insert your surname: ");
         String surname = sc.nextLine();
         System.out.println("Insert your age: ");
-        int age = sc.nextInt();
-        if (age < 18){
+        String answer = sc.nextLine();
+        int age = Integer.parseInt(answer);
+        while (age < 18){
             System.out.println("You must be 18 years old or older");
+            System.out.println("Insert your age: ");
+            age = sc.nextInt();
         }
+
 
         boolean debts = false;
 

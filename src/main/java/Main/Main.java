@@ -19,7 +19,8 @@ public class Main {
                     "5. Tickets history\n" +
                     "6. Exit");
             Scanner sc = new Scanner(System.in);
-            int option = sc.nextInt();
+            String answer = sc.nextLine();
+            int option = Integer.parseInt(answer);
 
             switch (option) {
                 case 1:

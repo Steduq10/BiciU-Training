@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+import java.util.Formatter;
 import java.util.List;
 
 
@@ -24,7 +25,7 @@ public class Ticket {
     private boolean helmet;
     private boolean condition;
     private String status;
-    private double amount;
+    static private double amount;
 
     private String fullName;
 
@@ -167,6 +168,9 @@ public class Ticket {
 
     public static void generateTicket(int code, String bicycle, String user, LocalDate date, LocalTime starTime, LocalTime endTime,boolean helmet, boolean condition, String status, double amount)  {
         code ++;
+        //Formatter obj = new Formatter();
+        //String codeNNN = String.valueOf(obj.format("%04d", code));
+
         Ticket ticket = new Ticket( code, bicycle, user, date, starTime, endTime, helmet, condition, status, amount);
         ticket.setCode(code);
         ticket.setBicycle(bicycle);

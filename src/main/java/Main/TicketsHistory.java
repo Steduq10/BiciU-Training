@@ -91,7 +91,8 @@ public class TicketsHistory {
                 "1. Show all tickets\n" +
                 "2. Search by code\n" +
                 "3. Search by status");
-        int option = sc.nextInt();
+        String opt = sc.nextLine();
+        int option = Integer.parseInt(opt);
 
         if (option == 1) {
             System.out.println("all tickets");
@@ -254,7 +255,9 @@ public class TicketsHistory {
                 "1. Active\n" +
                 "2. Pending\n" +
                 "3. OK ");
-        int st = sc.nextInt();
+
+        String s = sc.nextLine();
+        int st = Integer.parseInt(s);
         String option = null;
         if(st == 1){
              option = "Active";

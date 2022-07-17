@@ -23,7 +23,8 @@ public class ReturnBicycle {
 
     public static void returnBicycle() {
         System.out.println("What is the number of your ticket?:\n");
-        int code = sc.nextInt();
+        String nb = sc.nextLine();
+        int code = Integer.parseInt(nb);
         if (codes.contains(code)) {
             statusBicycle();
         } else {
@@ -41,7 +42,8 @@ public class ReturnBicycle {
         System.out.println("Has helmet? \n" +
                 "1. Yes\n" +
                 "2. No ");
-        int answer = sc.nextInt();
+        String an = sc.nextLine();
+        int answer = Integer.parseInt(an);
         helmet = helmetList.get(i + 1);
         if (answer == 1) {
             System.out.println("Helmet, ok");
@@ -57,7 +59,9 @@ public class ReturnBicycle {
         System.out.println("Good condition?: \n" +
                 "1. Yes\n" +
                 "2. No ");
-        int good = sc.nextInt();
+
+        String gd = sc.nextLine();
+        int good = Integer.parseInt(gd);
         condition = conditionList.get(i + 1);
         if (good == 1) {
             System.out.println("Bicycle is in good condition");
@@ -69,9 +73,11 @@ public class ReturnBicycle {
         System.out.println("Status bicycle condition updated");
         System.out.println("Return time?: \n" +
                 "Hour: ");
-        int hour = sc.nextInt();
+        String hr = sc.nextLine();
+        int hour = Integer.parseInt(hr);
         System.out.println("Minutes: ");
-        int minutes = sc.nextInt();
+        String mn = sc.nextLine();
+        int minutes = Integer.parseInt(mn);
         endTime = LocalTime.of(hour, minutes);
         endTimeList.set(i + 1, endTime);
         status = statusList.get(i + 1);
@@ -96,11 +102,16 @@ public class ReturnBicycle {
         //generateTicket(code, bicycle, user, date, starTime, endTime, helmet, condition, status, amount);
         System.out.println("Ticket updated!");
         updateTicket(code, bicycle, user, date, starTime, endTime, helmet, condition, status, amount);
+        amountList.set(i + 1, amount);
+        helmetList.set(i+1, helmet);
+        conditionList.set(i+1,condition);
+        statusList.set(i+1, status);
         bicycleAvailable();
         System.out.println("Proceed payment?: \n" +
                 "1. Yes\n" +
                 "2. No");
-        int pay = sc.nextInt();
+        String py = sc.nextLine();
+        int pay = Integer.parseInt(py);
 
         if (pay == 1) {
             PayTicket.payTicket();

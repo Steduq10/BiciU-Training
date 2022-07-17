@@ -192,9 +192,11 @@ public class BorrowBicycle {
                         //LocalTime startTime = LocalTime.now();
                         System.out.println("Start time?: \n" +
                                 "Hour: ");
-                        int hour = sc.nextInt();
+                        String ans = sc.nextLine();
+                        int hour = Integer.parseInt(ans);
                         System.out.println("Minutes: ");
-                        int minutes = sc.nextInt();
+                        String ans2 = sc.nextLine();
+                        int minutes = Integer.parseInt(ans2);
                         LocalTime startTime = LocalTime.of(hour,minutes);
                         LocalTime endTime = null;
                         boolean helmet = true;
@@ -237,9 +239,11 @@ public class BorrowBicycle {
                         //LocalTime startTime = LocalTime.now();
                         System.out.println("Start time?: \n" +
                                 "Hour: ");
-                        int hour = sc.nextInt();
+                        String ans = sc.nextLine();
+                        int hour = Integer.parseInt(ans);
                         System.out.println("Minutes: ");
-                        int minutes = sc.nextInt();
+                        String ans2 = sc.nextLine();
+                        int minutes = Integer.parseInt(ans2);
                         LocalTime startTime = LocalTime.of(hour,minutes);
 
                         LocalTime endTime = null;
