@@ -24,7 +24,7 @@ public class ReturnBicycle {
     public static void returnBicycle() {
         System.out.println("What is the number of your ticket?:\n");
         String nb = sc.nextLine();
-        int code = Integer.parseInt(nb);
+        code = Integer.parseInt(nb);
         if (codes.contains(code)) {
             statusBicycle();
         } else {
